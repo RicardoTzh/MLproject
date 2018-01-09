@@ -123,8 +123,8 @@ def auto_norm(data_set):
     :param data_set: 训练集数据
     :return: norm_data_set 归一化之后的训练集数据
     '''
-    data_max = data_set.max(0)  # 获取全矩阵的最大值
-    data_min = data_set.min(0)  # 获取全矩阵的最小值
+    data_max = data_set.max(0)  # 获取每列的最大值，axis=1时求每行的最大值
+    data_min = data_set.min(0)  # 获取每列的最小值
     cha = data_max-data_min
 
     m = data_set.shape[0]
