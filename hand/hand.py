@@ -2,11 +2,12 @@ import numpy as np
 import os
 from data import KNN
 import time
+import random
 
 os.chdir(r'D:\tzh\MLproject\hand\digits\training_digits')
 
 
-# 处理每一个手写数字的01文件
+# 处理每一个手写数字的二进制文件
 def image_to_vector(filename):
     '''
     传入一个像素数据点文件32X32，将其中数据放到1X1024的array中
@@ -42,6 +43,20 @@ def load_file(path):
     return data, labels, file_len
 
 
+# 获得一定比例的训练集
+def load_percent(path, k):
+    data, labels, file_len = load_file(path)
+    data_per = []
+    labels_per = []
+    for i in range(file_len):
+        if random.random() <= k:
+            data_per.append(data[i, :])
+            labels_per.append(int(labels[i]))
+    data_per = np.array(data_per)
+    labels_len = len(labels_per)
+    return data_per, labels_per, labels_len
+
+
 # 测试函数
 def hand_writing_class_test():
     '''
@@ -57,7 +72,7 @@ def hand_writing_class_test():
     #     vec_one = image_to_vector(file_name_list[i])
     #     data_test[i,:] = vec_one
     #     labels_test.append(int(file_name_list[i][0]))
-    data_test, labels_test, file_len_test = load_file(r'D:\tzh\MLproject\hand\digits\test_digits')
+    data_test, labels_test, file_len_test = load_percent(r'D:\tzh\MLproject\hand\digits\test_digits', 0.8)
     # 处理训练集数据
     # file_name_list_train = os.listdir(r'D:\tzh\MLproject\hand\digits\training_digits')
     # file_len_train = len(file_name_list_train)
@@ -67,7 +82,7 @@ def hand_writing_class_test():
     #     vec_one = image_to_vector(file_name_list_train[i])
     #     data_train[i, :] = vec_one
     #     labels_train.append(int(file_name_list_train[i][0]))
-    data_train, labels_train, file_len_train = load_file(r'D:\tzh\MLproject\hand\digits\training_digits')
+    data_train, labels_train, file_len_train = load_percent(r'D:\tzh\MLproject\hand\digits\training_digits', 0.8)
 
     # 开始测试
     time_begin = time.time()
