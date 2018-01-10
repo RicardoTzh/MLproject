@@ -7,7 +7,7 @@ def classify(in_x, data_set, labels, k):
     '''
     KNN方法判断某点的标签以及概率
     :in_x: 被判断点
-    :data_set: 训练数据的特征矩阵
+    :data_set: 训练数据的特征矩阵,
     :labels: 训练数据的标签,是list格式
     : k: 算法的k值
     :return class_count_sort[0][0]: 判断结果,输出标签
@@ -28,7 +28,7 @@ def classify(in_x, data_set, labels, k):
     return class_count_sort[0][0]
 
 
-# 数据集的归一化
+# 数据集的归一化,输入可以为array
 def auto_norm(data_set):
     '''
     归一化数据：将任意取值范围内的特征化为0-1区间的值
