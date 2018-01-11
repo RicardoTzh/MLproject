@@ -5,7 +5,7 @@ from KNN_learn.data import KNN
 import time
 import random
 
-os.chdir(r'D:\tzh\MLproject\KNN_learn\iris')
+os.chdir(r'D:\tzh\3MLproject\KNN_learn\iris')
 
 
 # 读取鸢尾花数据并做归一化处理
@@ -15,7 +15,7 @@ def iris_data(path):
     :param path: 鸢尾花数据存放文件
     :return: 鸢尾花数据的数据集，标签，长度
     '''
-    iris_file = pd.read_csv(path)
+    iris_file = pd.read_csv(path, header=None)  # 指定没有columns
     iris_data_set = iris_file.iloc[:, :4]
     iris_data_set, data_min, cha = KNN.auto_norm(iris_data_set)  # 归一化数据集
     iris_data_set = np.array(iris_data_set)
@@ -59,7 +59,7 @@ def iris_classsify_test(p):
     '''
     ##########取出数据
     data_train, labels_train, labels_len_train, data_test, labels_test, labels_len_test = \
-        load_percent(r'D:\tzh\MLproject\KNN_learn\iris\iris_data.csv', p)
+        load_percent(r'D:\tzh\3MLproject\KNN_learn\iris\iris_data.csv', p)
     ##########开始测试
     time_begin = time.time()
     err_count = 0.0
