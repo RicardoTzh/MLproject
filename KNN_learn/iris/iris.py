@@ -58,7 +58,8 @@ def iris_classsify_test(p):
     :return:
     '''
     ##########取出数据
-    data_train, labels_train, labels_len_train, data_test, labels_test, labels_len_test = \
+    data_train, labels_train, labels_len_train,\
+    data_test, labels_test, labels_len_test = \
         load_percent(r'D:\tzh\3MLproject\KNN_learn\iris\iris_data.csv', p)
     ##########开始测试
     time_begin = time.time()
